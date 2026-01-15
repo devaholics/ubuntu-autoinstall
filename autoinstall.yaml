@@ -25,8 +25,7 @@ autoinstall:
     update: true
 
   keyboard:
-    layout: de
-    variant: at
+    layout: at
 
   codecs:
     install: true
@@ -38,11 +37,12 @@ autoinstall:
     install: auto # auto is the default. it will be true for ubuntu-desktop systems
 
   snaps:
+    - name: htop
     - name: bitwarden
     - name: slack
 
   packages:
-    - htop
+    - curl
 
   updates: all
 
