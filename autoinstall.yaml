@@ -72,3 +72,9 @@ autoinstall:
         defer: true
         source:
           uri: https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/finish-setup.sh
+      - path: /home/test/.config/systemd/user/first-run.service
+        owner: 'test:test'
+        permissions: '0644'
+        defer: true
+        source:
+          uri: https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/first-run.service
