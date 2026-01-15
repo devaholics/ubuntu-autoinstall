@@ -59,11 +59,8 @@ autoinstall:
         owner: 'test:test'
         defer: true
         content: |
-          1. In GNOME,
-            (?)a. change Region & Language > Formats to Austria
-            b. add your Google account
+          1. In GNOME, add your Google account
           2. Install the Jetbrains Toolbox
-          3. Install Google Chrome
           4. Add SSH private keys (TODO setup basic config automated beforehand)
       - path: /home/test/Desktop/finish-setup.sh
         owner: 'test:test'
@@ -77,3 +74,6 @@ autoinstall:
         defer: true
         source:
           uri: https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/first-run.service
+    runcmd:
+      - [ systemctl, daemon-reload ]
+      - [ systemctl, enable, first-run.service ]
