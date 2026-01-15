@@ -1,3 +1,4 @@
+#cloud-config
 autoinstall:
   version: 1
 
@@ -51,7 +52,6 @@ autoinstall:
   updates: all
 
   shutdown: reboot
-
 
   user-data:
     write-files:
