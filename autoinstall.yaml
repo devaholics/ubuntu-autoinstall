@@ -60,7 +60,8 @@ autoinstall:
     # Place systemd service
     - |
       curtin in-target -- mkdir -p /home/test/.config/systemd/user
-      curtin in-target -- curtin in-target -- wget -O /home/test/Desktop/finish-setup.sh https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/finish-setup.sh
+      curtin in-target -- curtin in-target -- wget -O /home/test/.config/systemd/user/first-run.service https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/first-run.service
+      curtin in-target -- systemctl --user enable first-run.service
 
     # Leave a note with instructions to finish the installation
     - |
