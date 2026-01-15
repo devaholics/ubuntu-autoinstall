@@ -1,0 +1,49 @@
+autoinstall:
+  version: 1
+
+  source:
+    id: ubuntu-desktop-minimal # ubuntu-desktop-minimal is the default, but here for clarity
+    search_drivers: true # true is the default, but here for clarity
+
+  interactive-sections:
+    - network
+    - storage
+    - locale # although we configure it, confirm the configuration
+
+  identity:
+    hostname: devaholics-test
+    realname: Test User
+    username: test
+    # Use "openssl passwd -6" to generate this hash
+    password: $6$D2v8LUU9.UMWWClx$2jClQqoGv.9kBwqeICBcwFwPRLFsH/2Q1F1IrRQCIHFHHtt0OIuH2Zb4vxRPWPPLC/tiSnoEFOknO7XpOwen00
+
+  locale: en_US.UTF-8 # en_US.UTF-8 is the default, but here for clarity
+
+  timezone: "Europe/Vienna"
+
+  refresh-installer:
+    update: true
+
+  keyboard:
+    layout: de
+    variant: at
+
+  codecs:
+    install: true
+
+  drivers:
+    install: true
+
+  oem:
+    install: auto # auto is the default. it will be true for ubuntu-desktop systems
+
+  snaps:
+    - name: bitwarden
+    - name: slack
+
+  packages:
+    - htop
+
+  updates: all
+
+  shutdown: reboot
