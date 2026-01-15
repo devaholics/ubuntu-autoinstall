@@ -66,7 +66,8 @@ autoinstall:
           3. Install Google Chrome
           4. Install SDKMan
           5. Add SSH private keys (TODO setup basic config automated beforehand)
-      - path: /home/test/Desktop/finish-install.sh
+      - path: /home/test/Desktop/finish-setup.sh
         owner: 'test:test'
+        permissions: '0700'
         defer: true
         uri: https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/finish-setup.sh
