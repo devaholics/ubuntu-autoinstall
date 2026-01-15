@@ -44,6 +44,7 @@ autoinstall:
 
   packages:
     - curl
+    - vim
     - git
     - podman
 
@@ -52,28 +53,17 @@ autoinstall:
   shutdown: reboot
 
   late-commands:
-    # Update locale
+    # Ensure the desktop folder of the user exists
+    - curtin in-target -- mkdir -p /home/test/Desktop
+    # Download the script to finish setup
+    - curtin in-target -- wget -O /home/test/Desktop/finish-setup.sh https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/finish-setup.sh
+    # Place systemd service
     - |
-      curtin in-target -- locale-gen de_AT.UTF-8
-      curtin in-target -- update-locale
-      curtin in-target -- gsettings set org.gnome.system.locale region 'de_AT.UTF-8'
-      curtin in-target -- localectl set-locale LANG=en_US.UTF-8 \
-      LC_NUMERIC=de_AT.UTF-8 \
-      LC_TIME=de_AT.UTF-8 \
-      LC_MONETARY=de_AT.UTF-8 \
-      LC_PAPER=de_AT.UTF-8 \
-      LC_NAME=de_AT.UTF-8 \
-      LC_ADDRESS=de_AT.UTF-8 \
-      LC_TELEPHONE=de_AT.UTF-8 \
-      LC_MEASUREMENT=de_AT.UTF-8 \
-      LC_IDENTIFICATION=de_AT.UTF-8
-    # Update pinned apps
-    - curtin in-target -- gsettings set org.gnome.shell favorite-apps "['firefox_firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Ptyxis.desktop', 'bitwarden_bitwarden.desktop', 'slack_slack.desktop']"
-    # Install Node Version Manager
-    - curtin in-target -- curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+      curtin in-target -- mkdir -p /home/test/.config/systemd/user
+      curtin in-target -- curtin in-target -- wget -O /home/test/Desktop/finish-setup.sh https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/finish-setup.sh
+
     # Leave a note with instructions to finish the installation
     - |
-      curtin in-target -- mkdir -p /home/test/Desktop
       curtin in-target -- cat << EOF > /home/test/Desktop/manual-steps-to-finish-install.txt
       1. In GNOME,
         a. change Region & Language > Formats to Austria
