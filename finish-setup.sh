@@ -26,9 +26,11 @@ sudo dpkg -i ~/Downloads/google-chrome-stable_current_amd64.deb
 
 echo "Installing JetBrains Toolbox 3.2.0.65851..."
 wget -O ~/Downloads/jetbrains-toolbox.tar.gz https://download.jetbrains.com/toolbox/jetbrains-toolbox-3.2.0.65851.tar.gz
-mkdir /tmp/jetbrains-toolbox
-tar -xvf ~/Downloads/jetbrains-toolbox.tar.gz -C /tmp/jetbrains-toolbox --strip-components=1
-./tmp/jetbrains-toolbox/bin/jetbrains-toolbox
+mkdir ~/.local/share/JetBrains/Toolbox
+tar -xvf ~/Downloads/jetbrains-toolbox.tar.gz -C ~/.local/share/JetBrains/Toolbox --strip-components=1
+ln -s ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox /usr/local/bin/jetbrains-toolbox
+echo "Launching JetBrains Toolbox..."
+setsid jetbrains-toolbox >/dev/null 2>&1 &
 
 echo "Setting desktop favorites..."
 gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Ptyxis.desktop', 'jetbrains-idea.desktop', 'jetbrains-webstorm.desktop', 'jetbrains-datagrip.desktop', 'bitwarden_bitwarden.desktop', 'slack_slack.desktop']"
