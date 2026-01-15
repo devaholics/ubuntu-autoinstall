@@ -62,7 +62,8 @@ autoinstall:
         defer: true
         content: |
           1. In GNOME, add your Google account
-          2. Add SSH private keys (TODO setup basic config automated beforehand)
+          2. In Googe Chrome, add your Google account
+          3. Add SSH private keys (TODO setup basic config automated beforehand)
       - path: /home/test/Desktop/finish-setup.sh
         owner: 'test:test'
         permissions: '0700'
