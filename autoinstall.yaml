@@ -42,6 +42,8 @@ autoinstall:
     - name: htop
     - name: bitwarden
     - name: slack
+    - name: code
+      classic: true
 
   packages:
     - curl

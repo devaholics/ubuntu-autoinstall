@@ -33,7 +33,7 @@ echo "Launching JetBrains Toolbox..."
 setsid jetbrains-toolbox >/dev/null 2>&1 &
 
 echo "Setting desktop favorites..."
-gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Ptyxis.desktop', 'jetbrains-idea.desktop', 'jetbrains-webstorm.desktop', 'jetbrains-datagrip.desktop', 'bitwarden_bitwarden.desktop', 'slack_slack.desktop']"
+gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Ptyxis.desktop', 'jetbrains-idea.desktop', 'jetbrains-webstorm.desktop', 'jetbrains-datagrip.desktop', 'code_code.desktop', 'bitwarden_bitwarden.desktop', 'slack_slack.desktop']"
 
 echo "Validate the installation and then press any key to close this window."
 read -s -r
