@@ -70,4 +70,5 @@ autoinstall:
         owner: 'test:test'
         permissions: '0700'
         defer: true
-        uri: https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/finish-setup.sh
+        source:
+          uri: https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/finish-setup.sh
