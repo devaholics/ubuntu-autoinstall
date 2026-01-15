@@ -35,5 +35,8 @@ setsid jetbrains-toolbox >/dev/null 2>&1 &
 echo "Setting desktop favorites..."
 gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Ptyxis.desktop', 'jetbrains-idea.desktop', 'jetbrains-webstorm.desktop', 'jetbrains-datagrip.desktop', 'code_code.desktop', 'bitwarden_bitwarden.desktop', 'slack_slack.desktop']"
 
-echo "Validate the installation and then press any key to close this window."
+echo "Validate the installation now!"
+ehco "Once you are ready, press any key to initiate a reboot so that the locale change takes effect. (Logging out and back in again is not enough)"
 read -s -r
+
+sudo systemctl reboot
