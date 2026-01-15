@@ -28,7 +28,7 @@ echo "Installing JetBrains Toolbox 3.2.0.65851..."
 wget -O ~/Downloads/jetbrains-toolbox.tar.gz https://download.jetbrains.com/toolbox/jetbrains-toolbox-3.2.0.65851.tar.gz
 mkdir -p ~/.local/share/JetBrains/Toolbox
 tar -xvf ~/Downloads/jetbrains-toolbox.tar.gz -C ~/.local/share/JetBrains/Toolbox --strip-components=1
-ln -s ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox /usr/local/bin/jetbrains-toolbox
+sudo ln -s ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox /usr/local/bin/jetbrains-toolbox
 echo "Launching JetBrains Toolbox..."
 setsid jetbrains-toolbox >/dev/null 2>&1 &
 
