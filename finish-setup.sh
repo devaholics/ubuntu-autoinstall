@@ -21,5 +21,8 @@ gsettings set org.gnome.shell favorite-apps "['firefox_firefox.desktop', 'org.gn
 echo "Installing Node Version Manager v0.40.3..."
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 
+echo "Installing SDKMan..."
+curl -s "https://get.sdkman.io" | bash
+
 echo "Validate the installation and then press any key to close this window."
 read -s -r

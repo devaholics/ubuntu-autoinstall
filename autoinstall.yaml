@@ -60,12 +60,11 @@ autoinstall:
         defer: true
         content: |
           1. In GNOME,
-            a. change Region & Language > Formats to Austria
+            (?)a. change Region & Language > Formats to Austria
             b. add your Google account
           2. Install the Jetbrains Toolbox
           3. Install Google Chrome
-          4. Install SDKMan
-          5. Add SSH private keys (TODO setup basic config automated beforehand)
+          4. Add SSH private keys (TODO setup basic config automated beforehand)
       - path: /home/test/Desktop/finish-setup.sh
         owner: 'test:test'
         permissions: '0700'
