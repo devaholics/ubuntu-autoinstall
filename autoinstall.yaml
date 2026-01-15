@@ -43,6 +43,8 @@ autoinstall:
 
   packages:
     - curl
+    - git
+    - podman
 
   updates: all
 
@@ -64,8 +66,17 @@ autoinstall:
       LC_TELEPHONE=de_AT.UTF-8 \
       LC_MEASUREMENT=de_AT.UTF-8 \
       LC_IDENTIFICATION=de_AT.UTF-8
+    # Update pinned apps
+    - curtin in-target -- gsettings set org.gnome.shell favorite-apps "['firefox_firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Ptyxis.desktop', 'bitwarden_bitwarden.desktop', 'slack_slack.desktop']"
+    # Install Node Version Manager
+    - curtin in-target -- curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
     # Leave a note with instructions to finish the installation
     - |
-      cat << EOF > /home/test/Desktop/manual-steps-to-finish-install.txt
-      1. In GNOME, add your Google account
+      curtin in-target -- cat << EOF > /home/test/Desktop/manual-steps-to-finish-install.txt
+      1. In GNOME,
+        a. change Region & Language > Formats to Austria
+        b. add your Google account
+      2. Install the Jetbrains Toolbox
+      3. Install Google Chrome
+      4. Install SDKMan
       EOF
