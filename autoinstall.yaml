@@ -47,3 +47,25 @@ autoinstall:
   updates: all
 
   shutdown: reboot
+
+  late-commands:
+    # Update locale
+    - |
+      curtin in-target -- locale-gen de_AT.UTF-8
+      curtin in-target -- update-locale
+      curtin in-target -- gsettings set org.gnome.system.locale region 'de_AT.UTF-8'
+      curtin in-target -- localectl set-locale LANG=en_US.UTF-8 \
+      LC_NUMERIC=de_AT.UTF-8 \
+      LC_TIME=de_AT.UTF-8 \
+      LC_MONETARY=de_AT.UTF-8 \
+      LC_PAPER=de_AT.UTF-8 \
+      LC_NAME=de_AT.UTF-8 \
+      LC_ADDRESS=de_AT.UTF-8 \
+      LC_TELEPHONE=de_AT.UTF-8 \
+      LC_MEASUREMENT=de_AT.UTF-8 \
+      LC_IDENTIFICATION=de_AT.UTF-8
+    # Leave a note with instructions to finish the installation
+    - |
+      cat << EOF > /home/test/Desktop/manual-steps-to-finish-install.txt
+      1. In GNOME, add your Google account
+      EOF
