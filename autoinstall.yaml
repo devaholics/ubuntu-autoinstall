@@ -54,7 +54,7 @@ autoinstall:
   shutdown: reboot
 
   user-data:
-    write-files:
+    write_files:
       - path: /home/test/Desktop/manual-steps-to-finish-install.txt
         owner: 'test:test'
         defer: true
