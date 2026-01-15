@@ -52,19 +52,21 @@ autoinstall:
 
   shutdown: reboot
 
-  late-commands:
-    # Download the resources script to finish setup
-    - curtin in-target -- wget -O /tmp/finish-setup.sh https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/finish-setup.sh
-    - curtin in-target -- wget -O /tmp/first-run.service https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/first-run.service
-    # Leave a note with instructions to finish the installation
-    - |
-      curtin in-target -- cat << EOF > /tmp/manual-steps-to-finish-install.txt
-      1. In GNOME,
-        a. change Region & Language > Formats to Austria
-        b. add your Google account
-      2. Install the Jetbrains Toolbox
-      3. Install Google Chrome
-      4. Install SDKMan
-      5. Add SSH private keys (TODO setup basic config automated beforehand)
-      EOF
-      curtin in-target -- chown test:test /home/test/Desktop/manual-steps-to-finish-install.txt
+
+  user-data:
+    write-files:
+      - path: /home/test/Desktop/manual-steps-to-finish-install.txt
+        owner: 'test:test'
+        defer: true
+        content: |
+          1. In GNOME,
+            a. change Region & Language > Formats to Austria
+            b. add your Google account
+          2. Install the Jetbrains Toolbox
+          3. Install Google Chrome
+          4. Install SDKMan
+          5. Add SSH private keys (TODO setup basic config automated beforehand)
+      - path: /home/test/Desktop/finish-install.sh
+        owner: 'test:test'
+        defer: true
+        uri: https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/finish-setup.sh
