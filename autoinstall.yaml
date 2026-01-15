@@ -60,8 +60,7 @@ autoinstall:
         defer: true
         content: |
           1. In GNOME, add your Google account
-          2. Install the Jetbrains Toolbox
-          4. Add SSH private keys (TODO setup basic config automated beforehand)
+          2. Add SSH private keys (TODO setup basic config automated beforehand)
       - path: /home/test/Desktop/finish-setup.sh
         owner: 'test:test'
         permissions: '0700'
@@ -75,5 +74,8 @@ autoinstall:
         source:
           uri: https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/first-run.service
     runcmd:
-      - [ systemctl, daemon-reload ]
-      - [ systemctl, enable, first-run.service ]
+      # 1. Enable lingering so the user's systemd manager starts at boot
+      - [ loginctl, enable-linger, test ]
+      # 2. Now we can enable the systemd service
+      - [ systemctl, --user, -M, "test@", daemon-reload ]
+      - [ systemctl, --user, -M, "test@", enable, first-run.service ]
