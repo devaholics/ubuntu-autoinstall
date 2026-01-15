@@ -29,8 +29,8 @@ wget -O ~/Downloads/jetbrains-toolbox.tar.gz https://download.jetbrains.com/tool
 mkdir -p ~/.local/share/JetBrains/Toolbox
 tar -xvf ~/Downloads/jetbrains-toolbox.tar.gz -C ~/.local/share/JetBrains/Toolbox --strip-components=1
 sudo ln -s ~/.local/share/JetBrains/Toolbox/bin/jetbrains-toolbox /usr/local/bin/jetbrains-toolbox
-#echo "Launching JetBrains Toolbox..."
-#setsid jetbrains-toolbox >/dev/null 2>&1 &
+echo "Launching JetBrains Toolbox..."
+setsid jetbrains-toolbox >/dev/null 2>&1 &
 
 echo "Setting desktop favorites..."
 gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Ptyxis.desktop', 'code_code.desktop', 'bitwarden_bitwarden.desktop', 'slack_slack.desktop']"
