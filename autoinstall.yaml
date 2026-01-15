@@ -6,9 +6,10 @@ autoinstall:
     search_drivers: true # true is the default, but here for clarity
 
   interactive-sections:
-    - network
+    # Network and locale seem to be already defined through the installer???
+#    - network
+#    - locale # although we configure it, confirm the configuration
     - storage
-    - locale # although we configure it, confirm the configuration
 
   identity:
     hostname: devaholics-test
@@ -72,6 +73,7 @@ autoinstall:
     - curtin in-target -- curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
     # Leave a note with instructions to finish the installation
     - |
+      curtin in-target -- mkdir -p /home/test/Desktop
       curtin in-target -- cat << EOF > /home/test/Desktop/manual-steps-to-finish-install.txt
       1. In GNOME,
         a. change Region & Language > Formats to Austria
@@ -79,4 +81,6 @@ autoinstall:
       2. Install the Jetbrains Toolbox
       3. Install Google Chrome
       4. Install SDKMan
+      5. Add SSH private keys (TODO setup basic config automated beforehand)
       EOF
+      curtin in-target -- chown test:test /home/test/Desktop/manual-steps-to-finish-install.txt
