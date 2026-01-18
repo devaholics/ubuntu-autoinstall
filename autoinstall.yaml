@@ -38,18 +38,21 @@ autoinstall:
   oem:
     install: auto # auto is the default. it will be true for ubuntu-desktop systems
 
-#  snaps:
-#    - name: htop
-#    - name: bitwarden
-#    - name: slack
-#    - name: code
-#      classic: true
+  snaps:
+    - name: htop
+    - name: bitwarden
+    - name: slack
+    - name: spotify
+    - name: code
+      classic: true
 
-#  packages:
-#    - curl
-#    - vim
-#    - git
-#    - podman
+  packages:
+    - curl
+    - vim
+    - git
+    - podman
+    - flatpak
+#    - gnome-software-plugin-flatpak # Deliberately not installed for now
 
   updates: all
 

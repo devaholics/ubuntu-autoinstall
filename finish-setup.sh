@@ -1,25 +1,25 @@
 #!/usr/bin/env bash
 
-installAptPackages() {
-  echo "Installing APT packages..."
-  sudo apt update
-  sudo apt install \
-    curl \
-    vim \
-    git \
-    podman
-}
-
-installSnapPackages() {
-  echo "Installing Snap packages..."
-  snap install \
-    htop \
-    bitwarden \
-    slack \
-    spotify
-
-  snap install --classic code
-}
+#installAptPackages() {
+#  echo "Installing APT packages..."
+#  sudo apt update
+#  sudo apt install \
+#    curl \
+#    vim \
+#    git \
+#    podman
+#}
+#
+#installSnapPackages() {
+#  echo "Installing Snap packages..."
+#  sudo snap install \
+#    htop \
+#    bitwarden \
+#    slack \
+#    spotify
+#
+#  sudo snap install --classic code
+#}
 
 installGoogleChrome() {
   echo "Installing Google Chrome"
@@ -37,12 +37,6 @@ installJetbrainsToolbox() {
   setsid jetbrains-toolbox >/dev/null 2>&1 &
 }
 
-installFlatpack() {
-  echo "Installing Flatpack..."
-  sudo apt install flatpak gnome-software-plugin-flatpak
-  flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
-}
-
 installSDKMan() {
   echo "Installing SDKMan..."
   curl -s "https://get.sdkman.io" | bash
@@ -51,6 +45,11 @@ installSDKMan() {
 installNVM() {
   echo "Installing Node Version Manager v0.40.3..."
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+}
+
+configureFlatpack() {
+  echo "Configuring Flathub as source for Flatpak..."
+  flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 }
 
 configureLocale() {
@@ -88,13 +87,13 @@ updateUserPassword() {
 }
 
 updateUserPassword
-installAptPackages
-installSnapPackages
+#installAptPackages
+#installSnapPackages
 installSDKMan
 installNVM
 installGoogleChrome
 installJetbrainsToolbox
-installFlatpack
+configureFlatpack
 configureLocale
 configurePinnedApps
 validateAndReboot
