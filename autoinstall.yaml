@@ -64,6 +64,9 @@ autoinstall:
           1. In GNOME, add your Google account
           2. In Googe Chrome, add your Google account
           3. Add SSH private keys (TODO setup basic config automated beforehand)
+          4. Configure timers in Clocks to
+            a. take a break
+            b. use the standing desk
       - path: /home/test/Desktop/finish-setup.sh
         owner: 'test:test'
         permissions: '0700'

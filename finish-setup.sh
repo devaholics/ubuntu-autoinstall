@@ -72,7 +72,6 @@ configureLocale() {
 configurePinnedApps() {
   echo "Setting desktop favorites..."
   gsettings set org.gnome.shell favorite-apps "['google-chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Ptyxis.desktop', 'code_code.desktop', 'bitwarden_bitwarden.desktop', 'slack_slack.desktop']"
-
 }
 
 validateAndReboot() {
@@ -84,16 +83,17 @@ validateAndReboot() {
 }
 
 updateUserPassword() {
-  echo "Updating temporary password to final one:"
+  echo "Updating temporary password to final one!"
   passwd
 }
 
 updateUserPassword
 installAptPackages
-installSnapPackage
+installSnapPackages
 installSDKMan
 installNVM
 installGoogleChrome
 installJetbrainsToolbox
 configureLocale
+configurePinnedApps
 validateAndReboot
