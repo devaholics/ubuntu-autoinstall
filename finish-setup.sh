@@ -94,6 +94,7 @@ installSDKMan
 installNVM
 installGoogleChrome
 installJetbrainsToolbox
+installFlatpack
 configureLocale
 configurePinnedApps
 validateAndReboot
