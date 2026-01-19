@@ -118,11 +118,43 @@ updateUserPassword() {
 prepareProjectAppliqon() {
   echo "Preparing project directory for Appliqon..."
   mkdir -p ~/projects/appliqon/
-  git clone \
-    git@github.com:appliqon/appliqon-server.git \
-    git@github.com:appliqon/appliqon-webapp.git \
-    git@github.com:appliqon/appliqon-distribution.git \
-    git@github.com:appliqon/appliqon-mobile.git
+  git clone git@github.com:appliqon/appliqon-server.git ~/projects/appliqon/appliqon-server
+  git clone git@github.com:appliqon/appliqon-webapp.git ~/projects/appliqon/appliqon-webapp
+  git clone git@github.com:appliqon/appliqon-distribution.git ~/projects/appliqon/appliqon-distribution
+  git clone git@github.com:appliqon/appliqon-mobile.git ~/projects/appliqon/appliqon-mobile
+}
+
+prepareProjectDevaholics() {
+  echo "Preparing project directory for Devaholics..."
+  mkdir -p ~/projects/devaholics/
+  git clone git@github.com:devaholics/logbook-poc.git ~/projects/devaholics/logbook-poc
+  git clone git@github.com:devaholics/devaholics-pdf-profiles.git ~/projects/devaholics/devaholics-pdf-profiles
+  git clone git@github.com:devaholics/devaholics-website.git ~/projects/devaholics/devaholics-website
+  git clone git@github.com:devaholics/ubuntu-autoinstall.git ~/projects/devaholics/ubuntu-autoinstall
+}
+
+prepareProjectPrivate() {
+  echo "Preparing project directory for private stuff..."
+  mkdir -p ~/projects/private/
+  git clone git@github.com:psommersguter/asf-boating-certificate-quiz.git ~/projects/private/asf-boating-certificate-quiz
+  git clone git@github.com:psommersguter/okr-tracking.git ~/projects/private/okr-tracking
+  cat << EOF > ~/projects/private/.gitconfig
+[user]
+    name = Philipp Sommersguter
+    email = philipp.sommersguter@gmail.com
+EOF
+}
+
+prepareProjectMustVisibility() {
+  echo "Preparing project directory for MUST Visibility..."
+  mkdir -p ~/projects/must-visibility/
+  git clone git@github.com:MUSTVisibility/web-app.git ~/projects/must-visibility/web-app
+  git clone git@github.com:MUSTVisibility/infrastructure.git ~/projects/must-visibility/infrastructure
+  cat << EOF > ~/projects/must-visibility/.gitconfig
+[user]
+    name = Philipp Sommersguter
+    email = philipp.sommersguter@must-visibility.com
+EOF
 }
 
 updateUserPassword
@@ -137,4 +169,7 @@ configurePinnedApps
 configureSshCredentials
 configureGit
 prepareProjectAppliqon
+prepareProjectDevaholics
+prepareProjectPrivate
+prepareProjectMustVisibility
 validateAndReboot
