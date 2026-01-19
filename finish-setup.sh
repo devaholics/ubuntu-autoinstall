@@ -1,26 +1,5 @@
 #!/usr/bin/env bash
 
-#installAptPackages() {
-#  echo "Installing APT packages..."
-#  sudo apt update
-#  sudo apt install \
-#    curl \
-#    vim \
-#    git \
-#    podman
-#}
-#
-#installSnapPackages() {
-#  echo "Installing Snap packages..."
-#  sudo snap install \
-#    htop \
-#    bitwarden \
-#    slack \
-#    spotify
-#
-#  sudo snap install --classic code
-#}
-
 installGoogleChrome() {
   echo "Installing Google Chrome"
   wget -O ~/Downloads/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
@@ -45,6 +24,15 @@ installSDKMan() {
 installNVM() {
   echo "Installing Node Version Manager v0.40.3..."
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+}
+
+installBrotherPrinterScannerDriver() {
+  echo "Installing Brother MFC-L3760CDW printer/scanner driver..."
+  wget -O ~/Downloads/mfcl3760cdwpdrv-3.5.1-1.i386.deb https://download.brother.com/welcome/dlf105762/mfcl3760cdwpdrv-3.5.1-1.i386.deb
+  dpg --install ~/Downloads/mfcl3760cdwpdrv-3.5.1-1.i386.deb
+
+  wget -O ~/Downloads/brscan5-1.5.1-0.amd64.deb https://download.brother.com/welcome/dlf104033/brscan5-1.5.1-0.amd64.deb
+  dpg --install ~/Downloads/brscan5-1.5.1-0.amd64.deb
 }
 
 configureFlatpack() {
@@ -87,12 +75,11 @@ updateUserPassword() {
 }
 
 updateUserPassword
-#installAptPackages
-#installSnapPackages
 installSDKMan
 installNVM
 installGoogleChrome
 installJetbrainsToolbox
+installBrotherPrinterScannerDriver
 configureFlatpack
 configureLocale
 configurePinnedApps

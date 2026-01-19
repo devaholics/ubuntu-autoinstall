@@ -7,15 +7,12 @@ autoinstall:
     search_drivers: true # true is the default, but here for clarity
 
   interactive-sections:
-    # Network and locale seem to be already defined through the installer???
-#    - network
-#    - locale # although we configure it, confirm the configuration
     - storage
 
   identity:
-    hostname: devaholics-test
-    realname: Test User
-    username: test
+    hostname: devaholics-philipp
+    realname: Philipp Sommersguter (Devaholics)
+    username: philipp
     # Use "openssl passwd -6" to generate this hash
     password: $6$D2v8LUU9.UMWWClx$2jClQqoGv.9kBwqeICBcwFwPRLFsH/2Q1F1IrRQCIHFHHtt0OIuH2Zb4vxRPWPPLC/tiSnoEFOknO7XpOwen00
 
@@ -43,6 +40,7 @@ autoinstall:
     - name: bitwarden
     - name: slack
     - name: spotify
+    - name: vlc
     - name: code
       classic: true
 
@@ -60,31 +58,36 @@ autoinstall:
 
   user-data:
     write_files:
-      - path: /home/test/Desktop/manual-steps-to-finish-install.txt
-        owner: 'test:test'
+      - path: /home/philipp/Desktop/manual-steps-to-finish-install.txt
+        owner: 'philipp:philipp'
         defer: true
         content: |
           1. In GNOME, add your Google account
           2. In Googe Chrome, add your Google account
-          3. Add SSH private keys (TODO setup basic config automated beforehand)
-          4. Configure timers in Clocks to
+          3. Configure timers in Clocks to
             a. take a break
             b. use the standing desk
-      - path: /home/test/Desktop/finish-setup.sh
-        owner: 'test:test'
+          4. Verify/Configure the following:
+            a. Printer/Scanner
+            b. Microphone/Speaker
+            c. Webcam
+          5. (optional) GNOME Power Extension
+          6. Add SSH private keys (TODO setup basic config automated beforehand)
+      - path: /home/philipp/Desktop/finish-setup.sh
+        owner: 'philipp:philipp'
         permissions: '0700'
         defer: true
         source:
           uri: https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/finish-setup.sh
-      - path: /home/test/.config/systemd/user/first-run.service
-        owner: 'test:test'
+      - path: /home/philipp/.config/systemd/user/first-run.service
+        owner: 'philipp:philipp'
         permissions: '0644'
         defer: true
         source:
           uri: https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/first-run.service
     runcmd:
       # 1. Enable lingering so the user's systemd manager starts at boot
-      - [ loginctl, enable-linger, test ]
+      - [ loginctl, enable-linger, philipp ]
       # 2. Now we can enable the systemd service
-      - [ systemctl, --user, -M, "test@", daemon-reload ]
-      - [ systemctl, --user, -M, "test@", enable, first-run.service ]
+      - [ systemctl, --user, -M, "philipp@", daemon-reload ]
+      - [ systemctl, --user, -M, "philipp@", enable, first-run.service ]
