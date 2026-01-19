@@ -4,8 +4,8 @@ After=graphical-session.target
 
 [Service]
 Type=oneshot
-#ExecStartPre=wget -O /home/test/Desktop/setup.sh https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/finish-setup.sh
-ExecStart=/usr/bin/ptyxis --title 'Finish Setup' --execute /home/test/Desktop/finish-setup.sh
+#ExecStartPre=wget -O /home/philipp/Desktop/setup.sh https://raw.githubusercontent.com/devaholics/ubuntu-autoinstall/refs/heads/main/finish-setup.sh
+ExecStart=/usr/bin/ptyxis --title 'Finish Setup' --execute /home/philipp/Desktop/finish-setup.sh
 ExecStartPost=/usr/bin/systemctl --user disable first-run.service
 
 [Install]
