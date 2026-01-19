@@ -35,6 +35,47 @@ installBrotherPrinterScannerDriver() {
   dpg --install ~/Downloads/brscan5-1.5.1-0.amd64.deb
 }
 
+configureSshCredentials() {
+  echo "Configuring SSH Credentials..."
+  cat << EOF > ~/.ssh/config
+Host github.com
+  Preferredauthentications publickey
+  IdentityFile ~/.ssh/id_devaholics_github_rsa
+
+Host appliqon-dev
+  Preferredauthentications publickey
+  IdentityFile ~/.ssh/id_devaholics_appliqon_digitalocean_rsa
+  HostName 164.92.193.56
+  User root
+
+Host appliqon-prod
+  Preferredauthentications publickey
+  IdentityFile ~/.ssh/id_devaholics_appliqon_digitalocean_rsa
+  HostName 167.99.250.88
+  User root
+
+EOF
+
+  echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCyIFxTCat4/PwhTsQQX7bQDFPBOeVXPVuyJCQkelQMmuLuIKOqgTsmS5SYAgv1vakFDblJLDjITngYS5ZjDcmwa34XdR8V/YpdN2rNc496xwd1NtTDu5dtqvoSUu4jBJ4lha0CNRtOdYNvKcoNRH50vlTETyBfmrqq/PmfAK/ZVDuwks1oqYr8bVpXm8DQNMCgzT8O5rHLGC9p696l8rAn28ea/U612iVGJHq89RCSY46yh3FwPmAkvrYxWgPcBy1G30in+VFN6tBabEJKeXPV05JaT+prUDsfGviAHjLMyiyLzAXicc4/sEEhE7SutV6IT1+AqYO89jjx8bX7U7YiU/eSTL19Jk0zJveWZU0LSB9HP7uuziYIbm9bLdP1PF7fH2X4CnslLggqo08tPfhiAh71SML9+lCnQAt05YtNbU31ILIqOAylD86mm0iy+pixFTD9IcMrPU3JcLUF8SPY96w9++RCgWPI07nkQiT7EuCO3zkimPjW8v0tB59iIVs= philipp@devaholics.io" \
+    > ~/.ssh/id_devaholics_github_rsa.pub
+  echo "Paste value for private key ~/.ssh/id_devaholics_github_rsa"
+  cat > ~/.ssh/id_devaholics_github_rsa
+  chmod 600 ~/.ssh/id_devaholics_github_rsa
+
+  echo "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCzgogr6K08faDcv+g/pHwdacRolV7u7dKbhVyMDpMujq1nwCMxt5Mj6G5IAKHGaHxe6Qz9rZ+rrwl+S4NNJiN7yneMz3qUa/9BtyUmrkJSrgs0nUpFcHfdmBxnv2pDkmUupUWIbEsSzbbjBs6pbogfvngH7CpS2Sww1FzB0RFpZrlVpGH5yHddZV75AhorOGCy47Mo/QHzaFt9oGkeuv6yKlvNXv6D2vd3YrZjqSQwE2wXdl0kSiIs6wQy/eTFC5IV43mgKsi0vKAOJI5onwZCs2Pi+P15rM1/qRdAwwhCNtnNLYAjYCf8cpQ67Ac/x6jXAxm7hOm/kEnmYQ9kyyB7qUty/JeTe1cGFzeA8owLP3OsLnk2lZzFYsSuqfufKZedRPQdyP12VU9Gvvx7IWOr7tgSjKzQq+V6vbaRgTjU08yjPpQbspdUw6z80iEGpi5YTjQ1cvZ5eWXFggxbPxTqOtulLH9WEfBGLwGc93IwkpsmTTymJl1gXqxoY0mtcmk= philipp@appliqon.devaholics.io" \
+    > ~/.ssh/id_devaholics_appliqon_digitalocean_rsa.pub
+  echo "Paste value for private key ~/.ssh/id_devaholics_appliqon_digitalocean_rsa"
+  cat > ~/.ssh/id_devaholics_appliqon_digitalocean_rsa
+  chmod 600 ~/.ssh/id_devaholics_appliqon_digitalocean_rsa
+}
+
+configureGit() {
+  echo "Configuring Git..."
+  git config --global core.editor "vim"
+  git config --global user.name "Philipp Sommersguter"
+  git config --global user.email "philipp@devaholics.io"
+}
+
 configureFlatpack() {
   echo "Configuring Flathub as source for Flatpak..."
   flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
@@ -74,6 +115,16 @@ updateUserPassword() {
   passwd
 }
 
+prepareProjectAppliqon() {
+  echo "Preparing project directory for Appliqon..."
+  mkdir -p ~/projects/appliqon/
+  git clone \
+    git@github.com:appliqon/appliqon-server.git \
+    git@github.com:appliqon/appliqon-webapp.git \
+    git@github.com:appliqon/appliqon-distribution.git \
+    git@github.com:appliqon/appliqon-mobile.git
+}
+
 updateUserPassword
 installSDKMan
 installNVM
@@ -83,4 +134,7 @@ installBrotherPrinterScannerDriver
 configureFlatpack
 configureLocale
 configurePinnedApps
+configureSshCredentials
+configureGit
+prepareProjectAppliqon
 validateAndReboot
