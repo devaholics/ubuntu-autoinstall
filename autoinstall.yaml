@@ -73,6 +73,7 @@ autoinstall:
             c. Webcam
           5. (optional) GNOME Power Extension
           6. Add SSH private keys (TODO setup basic config automated beforehand)
+          7. Install git-lfs (TODO setup automated)
       - path: /home/philipp/Desktop/finish-setup.sh
         owner: 'philipp:philipp'
         permissions: '0700'
